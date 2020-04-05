@@ -14,12 +14,15 @@ final class PresentAnimator: NSObject {
     let destination: ContentPositionType
     let canScrollContentView: Bool
     let shouldBounce: Bool
+    let cornerRadius: CGFloat
 
-    init(duration: TimeInterval, destination: ContentPositionType, canScrollContentView: Bool, shouldBounce: Bool) {
+    init(duration: TimeInterval, destination: ContentPositionType,
+         canScrollContentView: Bool, shouldBounce: Bool, cornerRadius: CGFloat) {
         self.duration = duration
         self.destination = destination
         self.canScrollContentView = canScrollContentView
         self.shouldBounce = shouldBounce
+        self.cornerRadius = cornerRadius
     }
 }
 
@@ -48,6 +51,13 @@ extension PresentAnimator: UIViewControllerAnimatedTransitioning {
                                       height: canScrollContentView ? UIScreen.main.bounds.height - destination.originY : finalFrame.size.height)
         contentVC.view.layoutIfNeeded()
         containerView.addSubview(contentVC.view)
+
+        let isRoundCorners = cornerRadius > 0
+        if isRoundCorners {
+            contentVC.view.layer.masksToBounds = isRoundCorners
+            contentVC.view.layer.cornerRadius = cornerRadius
+            contentVC.view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        }
 
         let task = { [unowned self] in
             contentVC.view.frame.origin.y = self.destination.originY

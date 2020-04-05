@@ -20,17 +20,20 @@ final class CardViewController: UIViewController, CardViewControllerType {
     let dismissDuration: TimeInterval
     let canScrollContentView: Bool
     let shouldBounce: Bool
+    let contentVCCornerRadius: CGFloat
     var interactor: TransitionInteractor?
 
     init(contentVC: UIViewController, contentPositionType: ContentPositionType,
          presentDuration: TimeInterval = 0.4, dismissDuration: TimeInterval = 0.2,
-         canScrollContentView: Bool = false, shouldBounce: Bool = true) {
+         canScrollContentView: Bool = false, shouldBounce: Bool = true,
+         contentVCCornerRadius: CGFloat = 0) {
         self.contentVC = contentVC
         self.contentPositionType = contentPositionType
         self.presentDuration = presentDuration
         self.dismissDuration = dismissDuration
         self.canScrollContentView = canScrollContentView
         self.shouldBounce = shouldBounce
+        self.contentVCCornerRadius = contentVCCornerRadius
         super.init(nibName: "CardViewController", bundle: nil)
         transitioningDelegate = self
         modalPresentationStyle = .overCurrentContext // 下のVCを見せる
@@ -50,7 +53,8 @@ extension CardViewController: UIViewControllerTransitioningDelegate {
                              presenting: UIViewController,
                              source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         PresentAnimator(duration: presentDuration, destination: contentPositionType,
-                        canScrollContentView: canScrollContentView, shouldBounce: shouldBounce)
+                        canScrollContentView: canScrollContentView, shouldBounce: shouldBounce,
+                        cornerRadius: contentVCCornerRadius)
     }
 
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
