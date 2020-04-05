@@ -8,11 +8,11 @@
 
 import UIKit
 
-protocol CardViewControllerType {
+protocol CardViewControllerType: UIViewController {
     var contentVC: UIViewController { get }
 }
 
-class CardViewController: UIViewController, CardViewControllerType {
+final class CardViewController: UIViewController, CardViewControllerType {
 
     let contentVC: UIViewController
 
@@ -28,6 +28,7 @@ class CardViewController: UIViewController, CardViewControllerType {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+
     @IBAction func didTapBackgroundView(_ sender: UITapGestureRecognizer) {
         dismiss(animated: true)
     }
