@@ -23,6 +23,6 @@ extension DismissAnimator: UIViewControllerAnimatedTransitioning {
     }
 
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-
+        transitionContext.completeTransition(true)
     }
 }

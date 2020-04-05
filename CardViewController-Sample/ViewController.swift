@@ -13,7 +13,7 @@ class ViewController: UIViewController {
     @IBAction func didTap(sender: UIButton) {
         let cardVC = CardViewController(contentVC: ContentViewController())
         cardVC.transitioningDelegate = self
-        cardVC.modalPresentationStyle = .fullScreen
+        cardVC.modalPresentationStyle = .overCurrentContext // 下のVCを見せる
         present(cardVC, animated: true)
     }
 }

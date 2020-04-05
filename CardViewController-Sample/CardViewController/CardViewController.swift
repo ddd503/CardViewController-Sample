@@ -28,4 +28,7 @@ class CardViewController: UIViewController, CardViewControllerType {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    @IBAction func didTapBackgroundView(_ sender: UITapGestureRecognizer) {
+        dismiss(animated: true)
+    }
 }

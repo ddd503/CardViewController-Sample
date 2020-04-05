@@ -16,9 +16,18 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <color key="backgroundColor" white="0.33333333333333331" alpha="0.30320710589171973" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" white="0.33333333333333331" alpha="0.29718600716560511" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <gestureRecognizers/>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <connections>
+                <outletCollection property="gestureRecognizers" destination="UQP-fV-VFX" appends="YES" id="fzf-MQ-Mxg"/>
+            </connections>
             <point key="canvasLocation" x="139" y="118"/>
         </view>
+        <tapGestureRecognizer id="UQP-fV-VFX">
+            <connections>
+                <action selector="didTapBackgroundView:" destination="-1" id="46O-Sd-1Hf"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
 </document>
