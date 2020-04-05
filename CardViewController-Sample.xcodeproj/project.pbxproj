@@ -15,6 +15,8 @@
 		4539DB082439BD1900BE0B52 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4539DB062439BD1900BE0B52 /* LaunchScreen.storyboard */; };
 		4539DB122439BFA300BE0B52 /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4539DB102439BFA300BE0B52 /* CardViewController.swift */; };
 		4539DB132439BFA300BE0B52 /* CardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4539DB112439BFA300BE0B52 /* CardViewController.xib */; };
+		4539DB152439CD2C00BE0B52 /* PresentAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4539DB142439CD2C00BE0B52 /* PresentAnimator.swift */; };
+		4539DB172439CD4000BE0B52 /* DismissAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4539DB162439CD4000BE0B52 /* DismissAnimator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		4539DB092439BD1900BE0B52 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4539DB102439BFA300BE0B52 /* CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
 		4539DB112439BFA300BE0B52 /* CardViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardViewController.xib; sourceTree = "<group>"; };
+		4539DB142439CD2C00BE0B52 /* PresentAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentAnimator.swift; sourceTree = "<group>"; };
+		4539DB162439CD4000BE0B52 /* DismissAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissAnimator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +81,8 @@
 			children = (
 				4539DB102439BFA300BE0B52 /* CardViewController.swift */,
 				4539DB112439BFA300BE0B52 /* CardViewController.xib */,
+				4539DB142439CD2C00BE0B52 /* PresentAnimator.swift */,
+				4539DB162439CD4000BE0B52 /* DismissAnimator.swift */,
 			);
 			path = CardViewController;
 			sourceTree = "<group>";
@@ -154,6 +160,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4539DB122439BFA300BE0B52 /* CardViewController.swift in Sources */,
+				4539DB172439CD4000BE0B52 /* DismissAnimator.swift in Sources */,
+				4539DB152439CD2C00BE0B52 /* PresentAnimator.swift in Sources */,
 				4539DB002439BD1600BE0B52 /* ViewController.swift in Sources */,
 				4539DAFC2439BD1600BE0B52 /* AppDelegate.swift in Sources */,
 				4539DAFE2439BD1600BE0B52 /* SceneDelegate.swift in Sources */,

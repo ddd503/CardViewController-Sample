@@ -15,3 +15,14 @@ class ViewController: UIViewController {
     }
 }
 
+extension ViewController: UIViewControllerTransitioningDelegate {
+    func animationController(forPresented presented: UIViewController,
+                             presenting: UIViewController,
+                             source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        PresentAnimator(duration: 0.5)
+    }
+
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        DismissAnimator(duration: 0.5)
+    }
+}

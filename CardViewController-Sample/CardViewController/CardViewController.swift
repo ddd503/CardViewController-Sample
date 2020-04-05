@@ -10,7 +10,7 @@ import UIKit
 
 class CardViewController: UIViewController {
 
-    init() {
+    init(contentVC: UIViewController) {
         super.init(nibName: "CardViewController", bundle: nil)
     }
 
@@ -20,7 +20,5 @@ class CardViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
 }
