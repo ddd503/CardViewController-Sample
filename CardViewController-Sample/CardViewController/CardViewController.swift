@@ -23,6 +23,15 @@ final class CardViewController: UIViewController, CardViewControllerType {
     let contentVCCornerRadius: CGFloat
     var interactor: TransitionInteractor?
 
+    /// イニシャライザ
+    /// - Parameters:
+    ///   - contentVC: CardView内に表示するVC
+    ///   - contentPositionType: CardViewの初期出現位置
+    ///   - presentDuration: CardViewをアニメーション表示させる際のスピード
+    ///   - dismissDuration: CardViewを閉じる際のスピード
+    ///   - canScrollContentView: CardView内に表示するVC内でScrollViewを使用するか
+    ///   - shouldBounce: CardView自体がバウンド属性を持つか
+    ///   - contentVCCornerRadius: CardViewの角丸の角度（デフォルトは0）
     init(contentVC: UIViewController, contentPositionType: ContentPositionType,
          presentDuration: TimeInterval = 0.4, dismissDuration: TimeInterval = 0.2,
          canScrollContentView: Bool = false, shouldBounce: Bool = true,
