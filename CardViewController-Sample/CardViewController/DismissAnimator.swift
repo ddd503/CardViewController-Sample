@@ -23,6 +23,19 @@ extension DismissAnimator: UIViewControllerAnimatedTransitioning {
     }
 
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-        transitionContext.completeTransition(true)
+        guard let fromVC = transitionContext.viewController(forKey: .from), let contentVC = (fromVC as? CardViewControllerType)?.contentVC else {
+            transitionContext.cancelInteractiveTransition()
+            return
+        }
+
+        let animation = UIViewPropertyAnimator(duration: duration, dampingRatio: 0.8) {
+            contentVC.view.frame.origin.y = UIScreen.main.bounds.height
+            fromVC.view.alpha = 0
+        }
+        animation.addCompletion { (_) in
+            let isCompleteTransition = !transitionContext.transitionWasCancelled
+            transitionContext.completeTransition(isCompleteTransition)
+        }
+        animation.startAnimation()
     }
 }
