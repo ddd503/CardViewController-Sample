@@ -24,5 +24,30 @@ extension PresentAnimator: UIViewControllerAnimatedTransitioning {
 
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
 
+        guard let fromVC = transitionContext.viewController(forKey: .from),
+            let toVC = transitionContext.viewController(forKey: .to),
+            let contentVC = (toVC as? CardViewControllerType)?.contentVC else {
+            transitionContext.cancelInteractiveTransition()
+            return
+        }
+
+        let containerView = transitionContext.containerView
+        let finalFrame = transitionContext.finalFrame(for: toVC)
+        toVC.view.frame = finalFrame
+        toVC.view.layoutIfNeeded()
+        contentVC.view.frame = CGRect(x: finalFrame.origin.x,
+                                      y: UIScreen.main.bounds.height,
+                                      width: finalFrame.size.width,
+                                      height: finalFrame.size.height)
+        toVC.view.addSubview(contentVC.view)
+        containerView.addSubview(toVC.view)
+
+        let animation = UIViewPropertyAnimator(duration: duration, dampingRatio: 0.8) {
+            contentVC.view.frame = CGRect(x: finalFrame.origin.x,
+                                          y: finalFrame.size.height * 0.5,
+                                          width: finalFrame.size.width,
+                                          height: finalFrame.size.height)
+        }
+        animation.startAnimation()
     }
 }

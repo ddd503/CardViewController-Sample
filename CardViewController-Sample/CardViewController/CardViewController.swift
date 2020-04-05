@@ -8,9 +8,16 @@
 
 import UIKit
 
-class CardViewController: UIViewController {
+protocol CardViewControllerType {
+    var contentVC: UIViewController { get }
+}
+
+class CardViewController: UIViewController, CardViewControllerType {
+
+    let contentVC: UIViewController
 
     init(contentVC: UIViewController) {
+        self.contentVC = contentVC
         super.init(nibName: "CardViewController", bundle: nil)
     }
 
