@@ -20,6 +20,7 @@
 		4539DB1A2439F44A00BE0B52 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4539DB182439F44A00BE0B52 /* ContentViewController.swift */; };
 		4539DB1B2439F44A00BE0B52 /* ContentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4539DB192439F44A00BE0B52 /* ContentViewController.xib */; };
 		4539DB1D243A06CA00BE0B52 /* TransitionInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4539DB1C243A06CA00BE0B52 /* TransitionInteractor.swift */; };
+		4539DB1F243A305B00BE0B52 /* ContentPositionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4539DB1E243A305B00BE0B52 /* ContentPositionType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		4539DB182439F44A00BE0B52 /* ContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
 		4539DB192439F44A00BE0B52 /* ContentViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContentViewController.xib; sourceTree = "<group>"; };
 		4539DB1C243A06CA00BE0B52 /* TransitionInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionInteractor.swift; sourceTree = "<group>"; };
+		4539DB1E243A305B00BE0B52 /* ContentPositionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentPositionType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 				4539DB142439CD2C00BE0B52 /* PresentAnimator.swift */,
 				4539DB162439CD4000BE0B52 /* DismissAnimator.swift */,
 				4539DB1C243A06CA00BE0B52 /* TransitionInteractor.swift */,
+				4539DB1E243A305B00BE0B52 /* ContentPositionType.swift */,
 			);
 			path = CardViewController;
 			sourceTree = "<group>";
@@ -170,6 +173,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4539DB122439BFA300BE0B52 /* CardViewController.swift in Sources */,
+				4539DB1F243A305B00BE0B52 /* ContentPositionType.swift in Sources */,
 				4539DB172439CD4000BE0B52 /* DismissAnimator.swift in Sources */,
 				4539DB152439CD2C00BE0B52 /* PresentAnimator.swift in Sources */,
 				4539DB1D243A06CA00BE0B52 /* TransitionInteractor.swift in Sources */,

@@ -11,9 +11,11 @@ import UIKit
 
 final class PresentAnimator: NSObject {
     let duration: TimeInterval
+    let destination: ContentPositionType
 
-    init(duration: TimeInterval) {
+    init(duration: TimeInterval, destination: ContentPositionType) {
         self.duration = duration
+        self.destination = destination
     }
 }
 
@@ -43,9 +45,9 @@ extension PresentAnimator: UIViewControllerAnimatedTransitioning {
         containerView.addSubview(contentVC.view)
 
 
-        let animation = UIViewPropertyAnimator(duration: duration, dampingRatio: 0.8) {
+        let animation = UIViewPropertyAnimator(duration: duration, dampingRatio: 0.8) { [unowned self] in
             contentVC.view.frame = CGRect(x: finalFrame.origin.x,
-                                          y: finalFrame.size.height * 0.5,
+                                          y: self.destination.originY,
                                           width: finalFrame.size.width,
                                           height: finalFrame.size.height)
         }
