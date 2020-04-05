@@ -12,11 +12,13 @@ import UIKit
 final class PresentAnimator: NSObject {
     let duration: TimeInterval
     let destination: ContentPositionType
+    let canScrollContentView: Bool
     let shouldBounce: Bool
 
-    init(duration: TimeInterval, destination: ContentPositionType, shouldBounce: Bool) {
+    init(duration: TimeInterval, destination: ContentPositionType, canScrollContentView: Bool, shouldBounce: Bool) {
         self.duration = duration
         self.destination = destination
+        self.canScrollContentView = canScrollContentView
         self.shouldBounce = shouldBounce
     }
 }
@@ -38,34 +40,32 @@ extension PresentAnimator: UIViewControllerAnimatedTransitioning {
         let finalFrame = transitionContext.finalFrame(for: toVC)
         toVC.view.frame = finalFrame
         toVC.view.layoutIfNeeded()
+        containerView.addSubview(toVC.view)
 
         contentVC.view.frame = CGRect(x: finalFrame.origin.x,
                                       y: UIScreen.main.bounds.height,
                                       width: finalFrame.size.width,
-                                      height: finalFrame.size.height)
-        containerView.addSubview(toVC.view)
+                                      height: canScrollContentView ? UIScreen.main.bounds.height - destination.originY : finalFrame.size.height)
+        contentVC.view.layoutIfNeeded()
         containerView.addSubview(contentVC.view)
 
         let task = { [unowned self] in
-            contentVC.view.frame = CGRect(x: finalFrame.origin.x,
-                                          y: self.destination.originY,
-                                          width: finalFrame.size.width,
-                                          height: finalFrame.size.height)
+            contentVC.view.frame.origin.y = self.destination.originY
         }
 
-        let animation: UIViewPropertyAnimator
+        let animator: UIViewPropertyAnimator
 
         if shouldBounce {
-            animation = UIViewPropertyAnimator(duration: duration, dampingRatio: 0.7) {
+            animator = UIViewPropertyAnimator(duration: duration, dampingRatio: 0.7) {
                 task()
             }
         } else {
-            animation = UIViewPropertyAnimator(duration: duration, curve: .easeIn, animations: {
+            animator = UIViewPropertyAnimator(duration: duration, curve: .easeIn, animations: {
                 task()
             })
         }
 
-        animation.startAnimation()
+        animator.startAnimation()
 
         transitionContext.completeTransition(true)
     }

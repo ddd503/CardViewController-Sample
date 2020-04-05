@@ -41,7 +41,7 @@ final class TransitionInteractor: UIPercentDrivenInteractiveTransition {
         case .ended:
             interactionInProgress = false
 
-            let shouldCloseCardVC = cardVCType.contentVC.view.frame.origin.y > UIScreen.main.bounds.height * 0.7
+            let shouldCloseCardVC = cardVCType.contentVC.view.frame.origin.y > startPositionType.closeLimitOriginY
             let animator: UIViewPropertyAnimator
 
             if shouldCloseCardVC {

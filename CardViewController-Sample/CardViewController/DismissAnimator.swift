@@ -35,22 +35,22 @@ extension DismissAnimator: UIViewControllerAnimatedTransitioning {
             fromVC.view.alpha = 0
         }
 
-        let animation: UIViewPropertyAnimator
+        let animator: UIViewPropertyAnimator
 
         if shouldBounce {
-            animation = UIViewPropertyAnimator(duration: duration, dampingRatio: 0.7) {
+            animator = UIViewPropertyAnimator(duration: duration, dampingRatio: 0.7) {
                 task()
             }
         } else {
-            animation = UIViewPropertyAnimator(duration: duration, curve: .easeIn, animations: {
+            animator = UIViewPropertyAnimator(duration: duration, curve: .easeIn, animations: {
                 task()
             })
         }
 
-        animation.addCompletion { (_) in
+        animator.addCompletion { (_) in
             let isCompleteTransition = !transitionContext.transitionWasCancelled
             transitionContext.completeTransition(isCompleteTransition)
         }
-        animation.startAnimation()
+        animator.startAnimation()
     }
 }

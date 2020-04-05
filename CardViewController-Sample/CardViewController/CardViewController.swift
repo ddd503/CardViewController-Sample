@@ -23,7 +23,7 @@ final class CardViewController: UIViewController, CardViewControllerType {
     var interactor: TransitionInteractor?
 
     init(contentVC: UIViewController, contentPositionType: ContentPositionType,
-         presentDuration: TimeInterval = 0.5, dismissDuration: TimeInterval = 0.5,
+         presentDuration: TimeInterval = 0.4, dismissDuration: TimeInterval = 0.2,
          canScrollContentView: Bool = false, shouldBounce: Bool = true) {
         self.contentVC = contentVC
         self.contentPositionType = contentPositionType
@@ -40,10 +40,6 @@ final class CardViewController: UIViewController, CardViewControllerType {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-
     @IBAction func didTapBackgroundView(_ sender: UITapGestureRecognizer) {
         dismiss(animated: true)
     }
@@ -53,7 +49,8 @@ extension CardViewController: UIViewControllerTransitioningDelegate {
     func animationController(forPresented presented: UIViewController,
                              presenting: UIViewController,
                              source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        PresentAnimator(duration: presentDuration, destination: contentPositionType, shouldBounce: shouldBounce)
+        PresentAnimator(duration: presentDuration, destination: contentPositionType,
+                        canScrollContentView: canScrollContentView, shouldBounce: shouldBounce)
     }
 
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {

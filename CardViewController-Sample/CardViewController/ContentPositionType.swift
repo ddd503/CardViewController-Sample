@@ -30,4 +30,19 @@ enum ContentPositionType {
             return UIScreen.main.bounds.height
         }
     }
+
+    var closeLimitOriginY: CGFloat {
+        switch self {
+        case .full:
+            return UIScreen.main.bounds.height * 0.5
+        case .upperMiddle:
+            return UIScreen.main.bounds.height * 0.6
+        case .half:
+            return UIScreen.main.bounds.height * 0.7
+        case .underMiddle:
+            return UIScreen.main.bounds.height * 0.75
+        case .hidden:
+            return UIScreen.main.bounds.height
+        }
+    }
 }

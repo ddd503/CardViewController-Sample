@@ -16,14 +16,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oHX-WQ-47q">
-                                <rect key="frame" x="132" y="174" width="150" height="100"/>
+                                <rect key="frame" x="64" y="174" width="120" height="100"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="pHG-kn-6Bv"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="tdM-8T-WU7"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="tdM-8T-WU7"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
-                                <state key="normal" title="Open">
+                                <state key="normal" title="Normal">
                                     <color key="titleColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -33,14 +33,37 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="didTapWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vaE-Z0-aJj"/>
+                                    <action selector="didTapNormalWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vaE-Z0-aJj"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H7V-oa-RA4">
+                                <rect key="frame" x="230" y="174" width="120" height="100"/>
+                                <color key="backgroundColor" red="1" green="0.40761348139999998" blue="0.60872582730000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="duN-xR-9uE"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="xeM-v0-fsO"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                <state key="normal" title="Table">
+                                    <color key="titleColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="didTapTableWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RRH-gn-q1y"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="oHX-WQ-47q" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="B7Y-0M-YVQ"/>
+                            <constraint firstItem="H7V-oa-RA4" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" multiplier="1.4" id="8YV-m9-vRz"/>
+                            <constraint firstItem="oHX-WQ-47q" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" multiplier="0.6" id="B7Y-0M-YVQ"/>
                             <constraint firstItem="oHX-WQ-47q" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" multiplier="0.5" id="Wxe-0Z-4oB"/>
+                            <constraint firstItem="H7V-oa-RA4" firstAttribute="baseline" secondItem="oHX-WQ-47q" secondAttribute="baseline" id="lY9-Wh-YV6"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
