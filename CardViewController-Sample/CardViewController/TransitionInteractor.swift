@@ -12,10 +12,14 @@ import Foundation
 final class TransitionInteractor: UIPercentDrivenInteractiveTransition {
     
     weak var cardVCType: CardViewControllerType!
+    let startPositionType: ContentPositionType
+    let shouldBounce: Bool
     var interactionInProgress = false
 
-    init(cardVCType: CardViewControllerType) {
+    init(cardVCType: CardViewControllerType, startPositionType: ContentPositionType, shouldBounce: Bool) {
         self.cardVCType = cardVCType
+        self.startPositionType = startPositionType
+        self.shouldBounce = shouldBounce
         super.init()
         setupPanGesture()
     }
@@ -45,8 +49,14 @@ final class TransitionInteractor: UIPercentDrivenInteractiveTransition {
                     self?.cardVCType.contentVC.view.frame.origin.y = UIScreen.main.bounds.height
                 })
             } else {
-                animator = UIViewPropertyAnimator(duration: Double(duration), dampingRatio: 0.8) { [weak self] in
-                    self?.cardVCType.contentVC.view.transform = .identity
+                if shouldBounce {
+                    animator = UIViewPropertyAnimator(duration: Double(duration), dampingRatio: 0.7) { [weak self] in
+                        self?.cardVCType.contentVC.view.transform = .identity
+                    }
+                } else {
+                    animator = UIViewPropertyAnimator(duration: Double(duration / 3), curve: .easeIn, animations: { [weak self] in
+                        self?.cardVCType.contentVC.view.transform = .identity
+                    })
                 }
             }
 

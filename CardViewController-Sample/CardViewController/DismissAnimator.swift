@@ -11,9 +11,11 @@ import UIKit
 
 final class DismissAnimator: NSObject {
     let duration: TimeInterval
+    let shouldBounce: Bool
 
-    init(duration: TimeInterval) {
+    init(duration: TimeInterval, shouldBounce: Bool) {
         self.duration = duration
+        self.shouldBounce = shouldBounce
     }
 }
 
@@ -28,10 +30,23 @@ extension DismissAnimator: UIViewControllerAnimatedTransitioning {
             return
         }
 
-        let animation = UIViewPropertyAnimator(duration: duration, dampingRatio: 0.8) {
+        let task = {
             contentVC.view.frame.origin.y = UIScreen.main.bounds.height
             fromVC.view.alpha = 0
         }
+
+        let animation: UIViewPropertyAnimator
+
+        if shouldBounce {
+            animation = UIViewPropertyAnimator(duration: duration, dampingRatio: 0.7) {
+                task()
+            }
+        } else {
+            animation = UIViewPropertyAnimator(duration: duration, curve: .easeIn, animations: {
+                task()
+            })
+        }
+
         animation.addCompletion { (_) in
             let isCompleteTransition = !transitionContext.transitionWasCancelled
             transitionContext.completeTransition(isCompleteTransition)

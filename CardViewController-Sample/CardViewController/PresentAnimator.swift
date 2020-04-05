@@ -12,10 +12,12 @@ import UIKit
 final class PresentAnimator: NSObject {
     let duration: TimeInterval
     let destination: ContentPositionType
+    let shouldBounce: Bool
 
-    init(duration: TimeInterval, destination: ContentPositionType) {
+    init(duration: TimeInterval, destination: ContentPositionType, shouldBounce: Bool) {
         self.duration = duration
         self.destination = destination
+        self.shouldBounce = shouldBounce
     }
 }
 
@@ -44,13 +46,25 @@ extension PresentAnimator: UIViewControllerAnimatedTransitioning {
         containerView.addSubview(toVC.view)
         containerView.addSubview(contentVC.view)
 
-
-        let animation = UIViewPropertyAnimator(duration: duration, dampingRatio: 0.8) { [unowned self] in
+        let task = { [unowned self] in
             contentVC.view.frame = CGRect(x: finalFrame.origin.x,
                                           y: self.destination.originY,
                                           width: finalFrame.size.width,
                                           height: finalFrame.size.height)
         }
+
+        let animation: UIViewPropertyAnimator
+
+        if shouldBounce {
+            animation = UIViewPropertyAnimator(duration: duration, dampingRatio: 0.7) {
+                task()
+            }
+        } else {
+            animation = UIViewPropertyAnimator(duration: duration, curve: .easeIn, animations: {
+                task()
+            })
+        }
+
         animation.startAnimation()
 
         transitionContext.completeTransition(true)

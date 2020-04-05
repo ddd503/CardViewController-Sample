@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
     @IBAction func didTap(sender: UIButton) {
-        let cardVC = CardViewController(contentVC: ContentViewController())
+        let cardVC = CardViewController(contentVC: ContentViewController(), contentPositionType: .half)
         present(cardVC, animated: true)
     }
 }
