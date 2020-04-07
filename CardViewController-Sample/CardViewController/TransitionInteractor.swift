@@ -14,7 +14,6 @@ final class TransitionInteractor: UIPercentDrivenInteractiveTransition {
     weak var cardVCType: CardViewControllerType!
     let startPositionType: ContentPositionType
     let shouldBounce: Bool
-    var interactionInProgress = false
 
     init(cardVCType: CardViewControllerType, startPositionType: ContentPositionType, shouldBounce: Bool) {
         self.cardVCType = cardVCType
@@ -32,15 +31,9 @@ final class TransitionInteractor: UIPercentDrivenInteractiveTransition {
     @objc func handlePanGesture(_ gesture: UIPanGestureRecognizer) {
         let translation = gesture.translation(in: cardVCType.contentVC.view)
         switch gesture.state {
-        case .began:
-            interactionInProgress = true
         case .changed:
             cardVCType.contentVC.view.transform = CGAffineTransform(translationX: 0, y: translation.y)
-        case .cancelled:
-            interactionInProgress = false
         case .ended:
-            interactionInProgress = false
-
             let shouldCloseCardVC = cardVCType.contentVC.view.frame.origin.y > startPositionType.closeLimitOriginY
             let animator: UIViewPropertyAnimator
 

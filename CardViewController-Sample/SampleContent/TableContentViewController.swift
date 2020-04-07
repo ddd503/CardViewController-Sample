@@ -13,6 +13,7 @@ class TableContentViewController: UIViewController {
     @IBOutlet weak private var tableView: UITableView! {
         didSet {
             tableView.dataSource = self
+            tableView.delegate = self
             tableView.register(TableViewCell.nib(), forCellReuseIdentifier: TableViewCell.identifier)
         }
     }
@@ -35,5 +36,11 @@ extension TableContentViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCell.identifier, for: indexPath) as! TableViewCell
         cell.setInfo(text: "Table Content: \(dummyDataSource[indexPath.row])")
         return cell
+    }
+}
+
+extension TableContentViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(dummyDataSource[indexPath.row])
     }
 }
