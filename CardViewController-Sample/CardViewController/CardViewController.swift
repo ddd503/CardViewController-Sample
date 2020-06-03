@@ -18,7 +18,7 @@ final class CardViewController: UIViewController, CardViewControllerType {
     let contentPositionType: ContentPositionType
     let presentDuration: TimeInterval
     let dismissDuration: TimeInterval
-    let canScrollContentView: Bool
+    let includeScrollContentView: Bool
     let shouldBounce: Bool
     let contentVCCornerRadius: CGFloat
     var interactor: TransitionInteractor?
@@ -29,18 +29,18 @@ final class CardViewController: UIViewController, CardViewControllerType {
     ///   - contentPositionType: CardViewの初期出現位置
     ///   - presentDuration: CardViewをアニメーション表示させる際のスピード
     ///   - dismissDuration: CardViewを閉じる際のスピード
-    ///   - canScrollContentView: CardView内に表示するVC内でScrollViewを使用するか
+    ///   - includeScrollContentView: CardView内に表示するVC内でScrollViewを使用するか
     ///   - shouldBounce: CardView自体がバウンド属性を持つか
     ///   - contentVCCornerRadius: CardViewの角丸の角度（デフォルトは0）
     init(contentVC: UIViewController, contentPositionType: ContentPositionType,
          presentDuration: TimeInterval = 0.4, dismissDuration: TimeInterval = 0.2,
-         canScrollContentView: Bool = false, shouldBounce: Bool = true,
+         includeScrollContentView: Bool = false, shouldBounce: Bool = true,
          contentVCCornerRadius: CGFloat = 0) {
         self.contentVC = contentVC
         self.contentPositionType = contentPositionType
         self.presentDuration = presentDuration
         self.dismissDuration = dismissDuration
-        self.canScrollContentView = canScrollContentView
+        self.includeScrollContentView = includeScrollContentView
         self.shouldBounce = shouldBounce
         self.contentVCCornerRadius = contentVCCornerRadius
         super.init(nibName: "CardViewController", bundle: nil)
@@ -62,7 +62,7 @@ extension CardViewController: UIViewControllerTransitioningDelegate {
                              presenting: UIViewController,
                              source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         PresentAnimator(duration: presentDuration, destination: contentPositionType,
-                        canScrollContentView: canScrollContentView, shouldBounce: shouldBounce,
+                        includeScrollContentView: includeScrollContentView, shouldBounce: shouldBounce,
                         cornerRadius: contentVCCornerRadius)
     }
 
@@ -73,9 +73,9 @@ extension CardViewController: UIViewControllerTransitioningDelegate {
     func interactionControllerForPresentation(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
         // インタラクション中はインスタンスは保持する必要がある
         // contentView内でScrollViewを使用する場合はジェスチャーの衝突を防ぐため画面遷移自体のインタラクションは無効にしておく
-        interactor = canScrollContentView ? nil : TransitionInteractor(cardVCType: self,
-                                                                       startPositionType: contentPositionType,
-                                                                       shouldBounce: shouldBounce)
+        interactor = includeScrollContentView ? nil : TransitionInteractor(cardVCType: self,
+                                                                           startPositionType: contentPositionType,
+                                                                           shouldBounce: shouldBounce)
         return interactor
     }
 }

@@ -18,7 +18,7 @@ class ViewController: UIViewController {
     @IBAction func didTapTable(sender: UIButton) {
         let cardVC = CardViewController(contentVC: TableContentViewController(),
                                         contentPositionType: .upperMiddle,
-                                        canScrollContentView: true,
+                                        includeScrollContentView: true,
                                         shouldBounce: false)
         present(cardVC, animated: true)
     }
