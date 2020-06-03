@@ -12,15 +12,13 @@ import UIKit
 final class PresentAnimator: NSObject {
     let duration: TimeInterval
     let destination: ContentPositionType
-    let includeScrollContentView: Bool
     let shouldBounce: Bool
     let cornerRadius: CGFloat
     
     init(duration: TimeInterval, destination: ContentPositionType,
-         includeScrollContentView: Bool, shouldBounce: Bool, cornerRadius: CGFloat) {
+         shouldBounce: Bool, cornerRadius: CGFloat) {
         self.duration = duration
         self.destination = destination
-        self.includeScrollContentView = includeScrollContentView
         self.shouldBounce = shouldBounce
         self.cornerRadius = cornerRadius
     }
@@ -44,11 +42,10 @@ extension PresentAnimator: UIViewControllerAnimatedTransitioning {
         toVC.view.frame = finalFrame
         toVC.view.layoutIfNeeded()
         containerView.addSubview(toVC.view)
-        
         contentVC.view.frame = CGRect(x: finalFrame.origin.x,
                                       y: UIScreen.main.bounds.height,
                                       width: finalFrame.size.width,
-                                      height: includeScrollContentView ? UIScreen.main.bounds.height - destination.originY : finalFrame.size.height)
+                                      height: finalFrame.size.height)
         contentVC.view.layoutIfNeeded()
         containerView.addSubview(contentVC.view)
         
@@ -74,7 +71,13 @@ extension PresentAnimator: UIViewControllerAnimatedTransitioning {
                 task()
             })
         }
-        
+
+        let contentVCHeightAfterAnimate = UIScreen.main.bounds.height - self.destination.originY
+
+        animator.addCompletion {(_) in
+            contentVC.view.frame.size.height = contentVCHeightAfterAnimate
+        }
+
         animator.startAnimation()
         
         transitionContext.completeTransition(true)

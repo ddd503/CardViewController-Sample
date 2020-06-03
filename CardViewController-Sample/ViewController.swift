@@ -9,16 +9,15 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     @IBAction func didTapNormal(sender: UIButton) {
         let cardVC = CardViewController(contentVC: ContentViewController(), contentPositionType: .half)
         present(cardVC, animated: true)
     }
-
+    
     @IBAction func didTapTable(sender: UIButton) {
         let cardVC = CardViewController(contentVC: TableContentViewController(),
                                         contentPositionType: .upperMiddle,
-                                        includeScrollContentView: true,
                                         shouldBounce: false)
         present(cardVC, animated: true)
     }
